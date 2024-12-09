@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute('/login/')({
   component: Login,
 })
+
 function Login() {
   return (
     <div className="mx-4 flex flex-col items-center justify-center h-[80%]">
