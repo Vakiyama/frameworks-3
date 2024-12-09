@@ -1,14 +1,71 @@
 import * as React from 'react';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import {
+  Link,
+  Outlet,
+  createRootRouteWithContext,
+} from '@tanstack/react-router';
+import { type QueryClient } from '@tanstack/react-query';
 
-export const Route = createRootRoute({
+interface RouterContext {
+  queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
 });
 
 function RootComponent() {
   return (
     <React.Fragment>
-      <nav>Hi!</nav>
+      <nav className="flex flex-row gap-4 py-4 justify-between w-full px-4 bg-gradient-to-br from-lightest to-light items-center">
+        <Link href="/">
+          <button className="rounded-full h-10 w-10  bg-dark flex justify-center items-center">
+            <span className="text-text">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                color="#ccbff5"
+                fill="none"
+              >
+                <path
+                  d="M10 18L14 18"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M2.35139 13.2135C1.99837 10.9162 1.82186 9.76763 2.25617 8.74938C2.69047 7.73112 3.65403 7.03443 5.58114 5.64106L7.02099 4.6C9.41829 2.86667 10.6169 2 12 2C13.3831 2 14.5817 2.86667 16.979 4.6L18.4189 5.64106C20.346 7.03443 21.3095 7.73112 21.7438 8.74938C22.1781 9.76763 22.0016 10.9162 21.6486 13.2135L21.3476 15.1724C20.8471 18.4289 20.5969 20.0572 19.429 21.0286C18.2611 22 16.5537 22 13.1388 22H10.8612C7.44633 22 5.73891 22 4.571 21.0286C3.40309 20.0572 3.15287 18.4289 2.65243 15.1724L2.35139 13.2135Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+        </Link>
+        {/*
+        {user && (
+          <Link href="/profile">
+            <button className="rounded-full border-dark border-2 h-10 w-10 bg-dark">
+              {user.profilePictureUrl ? (
+                <Image
+                  width={40}
+                  height={40}
+                  alt=""
+                  className="rounded-full object-cover"
+                  src={user.profilePictureUrl}
+                />
+              ) : (
+                <p className="">{user.name[0]}</p>
+              )}
+            </button>
+          </Link>
+        )}
+          */}
+      </nav>
       <Outlet />
     </React.Fragment>
   );
