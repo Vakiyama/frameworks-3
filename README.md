@@ -1,15 +1,7 @@
 # frameworks-3
 
-To install dependencies:
+Same project as midterm
 
-```bash
-bun install
-```
+Running bun run dev in the root dir should run both the client and server 
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.8. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+See the .env.example in the packages/backend folder for kinde setup
