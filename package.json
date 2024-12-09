@@ -1,11 +1,12 @@
 {
   "name": "frameworks-3",
-  "module": "index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:frontend": "cd packages/frontend && bun dev",
+    "dev:backend": "cd packages/backend && bun dev",
+    "dev": "bunx concurrently -k -t \"HH:mm:ss\" -n backend,frontend -c blue,green \"bun run dev:backend\" \"bun run dev:frontend\""
   }
 }
