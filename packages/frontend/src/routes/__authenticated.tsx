@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Outlet, useNavigate } from '@tanstack/react-router';
 import { userQueryOptions } from '@/lib/api';
 
 export const Route = createFileRoute('/__authenticated')({
@@ -13,8 +13,9 @@ export const Route = createFileRoute('/__authenticated')({
   },
   component: () => {
     const { user } = Route.useRouteContext();
+    const navigate = useNavigate();
     if (!user) {
-      return 'Login page';
+      return navigate({ to: '/login' });
     }
     return <Outlet />;
   },
