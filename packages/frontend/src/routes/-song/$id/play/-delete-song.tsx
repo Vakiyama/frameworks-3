@@ -1,14 +1,12 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import { deleteSong } from '../../upload/server-actions';
+// import { deleteSong } from '../../upload/server-actions';
+import { useNavigate } from '@tanstack/react-router';
 
 export function DeleteSong(props: { songId: number }) {
-  const router = useRouter();
+  const navigate = useNavigate({ from: '/song/$id/play/delete-song' });
 
   async function handleClick() {
-    await deleteSong(props.songId);
-    router.push('/');
+    // await deleteSong(props.songId);
+    navigate({ to: '/' });
   }
   return (
     <button

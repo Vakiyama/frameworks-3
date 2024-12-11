@@ -1,15 +1,12 @@
-import { getUserServer } from '@/hooks/auth';
-import { DeleteSong } from './delete-song';
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import { getSongById } from './server-action';
+// import { getUserServer } from '@/hooks/auth';
+import { DeleteSong } from './-delete-song';
+// import { getSongById } from './server-action';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 
-export default async function PlaySong(props: { params: { id: string } }) {
-  const song = await getSongById(parseInt(props.params.id));
-  const user = await getUserServer();
-  if (song.userId !== user.id) {
-    return redirect('/');
-  }
+export const Route = createFileRoute('/song/$id/play/');
+
+function PlaySong(props: { params: { id: string } }) {
+  const navigate = useNavigate({ from: '/song/$id/play' });
 
   return (
     <div className="px-4 flex flex-col items-center justify-center">

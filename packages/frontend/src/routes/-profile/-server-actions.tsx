@@ -1,3 +1,4 @@
+/*
 'use server';
 
 import { db } from '@/db';
@@ -12,3 +13,4 @@ export async function updateUser(
   await db.update(usersTable).set(user).where(eq(usersTable.id, id));
   revalidatePath('/', 'layout');
 }
+*/

@@ -1,11 +1,8 @@
-'use client';
-import { LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-
 import { useForm } from 'react-hook-form';
-import { welcomeFormSchema, WelcomeFormSchema } from '../welcome/welcome';
+import { welcomeFormSchema, WelcomeFormSchema } from '../welcome/-welcome';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { User } from '@/db/schema/user';
-import { updateUser } from './server-actions';
+import { type User } from '@backend/db/schema/user';
+// import { updateUser } from './server-actions';
 
 export function ProfileForm(props: { user: User }) {
   const {
@@ -17,7 +14,7 @@ export function ProfileForm(props: { user: User }) {
   });
 
   async function onSubmit(formData: WelcomeFormSchema) {
-    await updateUser(formData, props.user.id);
+    // await updateUser(formData, props.user.id);
   }
 
   return (
@@ -37,9 +34,12 @@ export function ProfileForm(props: { user: User }) {
       <button type="submit" className="bg-dark text-white rounded px-4 py-1">
         <span>Update</span>
       </button>
-      <LogoutLink className="bg-light border-dark border-2 text-black rounded px-4 py-1 flex justify-center">
+      <a
+        href="/api/logout"
+        className="bg-light border-dark border-2 text-black rounded px-4 py-1 flex justify-center"
+      >
         <span>Logout</span>
-      </LogoutLink>
+      </a>
     </form>
   );
 }

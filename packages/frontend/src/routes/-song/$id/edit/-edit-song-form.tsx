@@ -1,14 +1,12 @@
-'use client';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { twMerge } from 'tailwind-merge';
 
-import { updateSongById } from '../edit/server-action';
-import { genresEnum, songsTable } from '@/db/schema/song';
-import { revalidatePath } from 'next/cache';
+// import { updateSongById } from '../edit/server-action';
+import { genresEnum, songsTable } from '@backend/db/schema/song';
 import { z } from 'zod';
 import { InferSelectModel } from 'drizzle-orm';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from '@tanstack/react-router';
 
 // Define the Zod schema including file validation
 const editSongFormSchema = z.object({
@@ -40,13 +38,12 @@ export function EditSongForm(props: {
     resolver: zodResolver(editSongFormSchema),
   });
 
-  const router = useRouter();
+  const navigate = useNavigate({ from: '/song/$id/edit' });
 
   async function onSubmit(formData: EditSongSchemaType) {
-    console.log(formData, '????');
-    await updateSongById(props.song.id, formData);
+    // await updateSongById(props.song.id, formData);
     setTimeout(() => {
-      router.push(`/song/${props.song.id}/play`);
+      navigate({ to: `/song/${props.song.id}/play` });
     }, 500);
   }
 
@@ -66,9 +63,7 @@ export function EditSongForm(props: {
             defaultValue={props.song.name}
             {...register('name')}
           />
-          {errors.name && (
-            <p className="text-red-500">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
 
           <label className="text-xl">Artist</label>
           <input
@@ -100,7 +95,7 @@ export function EditSongForm(props: {
             className="p-2 rounded placeholder:text-gray-600 text-black"
             {...register('genre')}
           >
-            {genresEnum.map((genre) => (
+            {genresEnum.map((genre: string) => (
               <option key={genre}>{genre}</option>
             ))}
           </select>

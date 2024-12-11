@@ -1,9 +1,10 @@
-'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { createUser } from './server-actions';
+// import { createUser } from './server-actions';
+import { useNavigate } from '@tanstack/react-router';
+
+function createUser() {}
 
 export const welcomeFormSchema = z.object({
   name: z
@@ -18,7 +19,7 @@ export function Welcome(props: {
   kindeId: string;
   kindeProfilePictureUrl: string | null;
 }) {
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,7 +36,7 @@ export function Welcome(props: {
       profilePictureUrl: props.kindeProfilePictureUrl,
     };
     await createUser(userDetails);
-    setTimeout(() => router.push('/'), 500);
+    setTimeout(() => navigate({}), 500);
   }
 
   return (

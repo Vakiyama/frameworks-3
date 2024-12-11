@@ -1,3 +1,4 @@
+/*
 'use server';
 import { db } from '@/db';
 import { songsTable } from '@/db/schema/song';
@@ -16,3 +17,4 @@ export async function updateSongById(
     .returning();
   revalidatePath('/', 'layout');
 }
+*/

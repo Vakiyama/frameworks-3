@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import './index.css';
+import { client } from '../lib/api';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 export const Route = createFileRoute('/')({
   component: Home,
 });
-import { useState } from 'react';
-import './index.css';
-import { client } from '../lib/api';
-import { useQuery } from '@tanstack/react-query';
 
 function Home() {
   return (

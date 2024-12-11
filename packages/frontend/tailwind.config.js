@@ -9,7 +9,18 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
       colors: {
+        darkest: '#261856', // darker shade
+        dark: '#3B2590', // slightly less dark
+        neutral: '#5438B5', // bold, mid-tone
+        light: '#7A61D1', // lighter with more contrast from neutral
+        lightest: '#A092DF', // lightest with stronger contrast
+        text: '#ccbff5',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

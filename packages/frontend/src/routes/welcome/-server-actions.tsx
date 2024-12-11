@@ -1,3 +1,4 @@
+/*
 'use server';
 import { db } from '@/db';
 import { usersTable } from '@/db/schema/user';
@@ -17,3 +18,4 @@ export async function createUser(user: InferInsertModel<typeof usersTable>) {
   await db.insert(usersTable).values(user);
   revalidatePath('/', 'layout');
 }
+*/

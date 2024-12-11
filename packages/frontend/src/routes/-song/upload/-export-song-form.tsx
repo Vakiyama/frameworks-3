@@ -1,13 +1,12 @@
-'use client';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createSong, getSignedURL } from './server-actions';
-import { genresEnum } from '@/db/schema/song';
+// import { createSong, getSignedURL } from './server-actions';
+import { genresEnum } from '@backend/db/schema/song';
 import { useState } from 'react';
-import { User } from '@/db/schema/user';
-import { useRouter } from 'next/navigation';
+import { User } from '@backend/db/schema/user';
 import { twMerge } from 'tailwind-merge';
+import { useNavigate } from '@tanstack/react-router';
 
 // Define the Zod schema including file validation
 export const uploadSongFormSchema = z.object({
@@ -51,8 +50,10 @@ export function ExportSongForm(props: { user: User }) {
 
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
-  const router = useRouter();
+  const navigate = useNavigate({ from: '/song/upload' });
 
+  const onSubmit = () => {};
+  /*
   const onSubmit = async (data: UploadSongSchemaType) => {
     if (uploading) return;
     setUploading(true);
@@ -102,6 +103,7 @@ export function ExportSongForm(props: { user: User }) {
       );
     setUploading(false);
   };
+  */
 
   return (
     <div className="flex flex-col items-center h-full text-white px-4 w-full">
